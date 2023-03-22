@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: election-app-front
+    image: election-app-front
+    build:
+      context: .
+    ports:
+     - 8080:80
