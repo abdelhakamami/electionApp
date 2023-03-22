@@ -1,1 +1,1 @@
-# electionApp
+# Electapp
