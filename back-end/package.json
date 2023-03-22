@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon index.js"
+    "devStart": "nodemon index.js" ,
+    "start:migrate:prod": "npx prisma migrate deploy && npm run devStart"
   },
   "keywords": [],
   "author": "",

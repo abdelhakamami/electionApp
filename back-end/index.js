@@ -18,7 +18,7 @@ app.use("/api/admins", usersRoute);
 app.use("/api/voters", votersRoute);
 app.use("/api/elections", electionsRoute);
 
-app.listen(3005, (error) => {
+app.listen(3001, (error) => {
   if (error) console.log("Unable to start the server");
-  else console.log("server listening on port 3005");
+  else console.log("server listening on port 3001");
 });
