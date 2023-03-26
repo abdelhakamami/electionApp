@@ -22,11 +22,15 @@ services:
     restart: always
     ports:
       - "3001:3001"
-    #command: npx prisma migrate deploy && npm devStart
     env_file:
       - .env
     environment:
-       DATABASE_URL: ${DATABASE_URL}
+       PORT: ${PORT}
+       DB_USER: ${DB_USER}
+       DB_PASSWORD: ${DB_PASSWORD}
+       DB_HOST: ${DB_HOST}
+       DB_NAME: ${DB_HOST}
+       DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_HOST}?connect_timeout=1000
        SECRET_KEY: ${SECRET_KEY}
 
     networks: 
