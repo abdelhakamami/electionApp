@@ -23,10 +23,11 @@ services:
     ports:
       - "3001:3001"
     #command: npx prisma migrate deploy && npm devStart
+    env_file:
+      - .env
     environment:
-       DATABASE_URL: postgresql://user:pass@postgres:5432/db?connect_timeout=1000
-
-       SECRET_KEY: Bco2mYFjYclGvmOYTYyxPXzU4GQuK=8hrt23Ryp45ispU0W9xDx3cbtJiJjGw6Tf1GPU-oWA0v2FWT4xV15u23UzK4VNRwU!iQqz92M-DvRHdsVRKSh6sPiyfLGVV5De2qIpHNTbAuuf52F-49k3IHx99KwTPWCb6VFoaMu!RJT4-u3CU4Zi-=FcAcbiIxIrLi8A=pf9CFcSCIXtiaJp!h21VwW?wTE0EZrwuSXeH3O7?TjnisCpRe?AE
+       DATABASE_URL: ${DATABASE_URL}
+       SECRET_KEY: ${SECRET_KEY}
 
     networks: 
      - network-backend
