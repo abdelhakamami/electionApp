@@ -12,6 +12,7 @@ steps:
     password:
       from_secret: docker_password
     dockerfile: ./back-end/Dockerfile
+    repo: abdelhakamami/electionApp
     context: ./back-end
-    tags: electionApp:dev
+    tags: dev
    
