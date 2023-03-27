@@ -13,8 +13,8 @@ steps:
   - name: push-image-backend
     image: plugins/kaniko
     settings:
-      registry: electionapp_api
-      repo: docker.io/abdelhakavaxia
+      registry:  docker.io
+      repo: docker.io/abdelhaxavaxia
       username: abdelhakavaxia
       password: abdelhakavaxia7*
       dockerfile: ./back-end/Dockerfile 
