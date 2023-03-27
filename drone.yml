@@ -10,8 +10,14 @@ platform:
 steps:
   - name: build-image-back
     image: plugins/docker
-    commands:
-      - docker build -t backend-image:dev -f ./back-end/Dockerfile .
+    repo: abdelhakavaxia/abdelhakavaxia
+    tags: dev
+    dockerfile: ./back-end/Dockerfile
+    
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
 
   - name: push-image-backend
     image: plugins/docker
