@@ -14,7 +14,7 @@ steps:
     image: plugins/kaniko
     settings:
       registry:  docker.io
-      repo: docker.io/abdelhaxavaxia
+      repo: abdelhaxavaxia
       username: abdelhakavaxia
       password: abdelhakavaxia7*
       dockerfile: ./back-end/Dockerfile 
