@@ -15,4 +15,5 @@ steps:
     repo: abdelhakavaxia/election-app-backend
     context: ./back-end
     tags: dev
+    email: abdelhak.amami@avaxia-group.com
    
