@@ -16,10 +16,10 @@ steps:
       
       tag: dev
       repo: docker.io/abelhakavaxia
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
+      username: abdelhakavaxia
+        #from_secret:
+      password: abdelhakavaxia7*
+        #from_secret: abdelhakavaxia7*
       dockerfile: ./back-end/Dockerfile 
 
   - name: build-image-frontend
