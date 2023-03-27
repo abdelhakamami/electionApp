@@ -10,6 +10,9 @@ platform:
 steps: 
   - name: build-image-frontend
     image: docker:dind
+    volumes:
+    - name: dockersock
+      path: /var/run/
     commands:
       - docker build -t frontend-image-:dev -f ./front-end/Dockerfile .
 
@@ -23,3 +26,7 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
+        volumes:
+- name: dockersock
+  host:
+    path: /var/run/
