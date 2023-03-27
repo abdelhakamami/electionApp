@@ -7,8 +7,7 @@ platform:
   os: linux
   arch: amd64
 
-
-
+steps: 
   - name: build-image-frontend
     image: docker:dind
     commands:
