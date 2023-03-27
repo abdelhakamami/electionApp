@@ -1,6 +1,7 @@
 kind: pipeline
 name: build-and-push
 type: kubernetes
+privileged: true 
 
 
 platform:
