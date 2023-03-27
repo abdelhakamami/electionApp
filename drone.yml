@@ -1,0 +1,39 @@
+kind: pipeline
+name: build-and-push
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build-image-back
+    image: docker:latest
+    commands:
+      - docker build -t backend-image:dev -f ./back-end/Dockerfile .
+
+  - name: push-image-backend
+    image: plugins/docker
+    settings:
+      repository: abdelhakavaxia
+      tag: dev
+      registry: docker.io
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+
+  - name: build-image-frontend
+    image: docker:latest
+    commands:
+      - docker build -t frontend-image-:dev -f ./front-end/Dockerfile .
+
+  - name: push-image-frontend
+    image: plugins/docker
+    settings:
+      repository: abdelhakavaxia
+      tag: dev
+      registry: docker.io
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
