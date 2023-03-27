@@ -9,6 +9,7 @@ platform:
 
 steps: 
   - name: build-image-frontend
+    privileged: true 
     image: docker:dind
     volumes:
     - name: dockersock
