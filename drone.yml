@@ -6,13 +6,13 @@ steps:
 - name: docker
   image: plugins/docker
   settings:
-    registry: docker.io/abdelhakavaxia
+    registry: docker.io
     username: abdelhakavaxia
         #from_secret: docker_username
     password: abdelhakavaxia7*
         #from_secret: docker_password
     dockerfile: ./back-end/Dockerfile
-    repo: docker.io/abdelhakavaxia/election-app-backend
+    repo: abdelhakavaxia/election-app-backend
     context: ./back-end
     tags: dev
    
