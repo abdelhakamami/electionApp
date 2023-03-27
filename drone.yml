@@ -15,10 +15,8 @@ steps:
     settings:
       registry: docker.io/abdelhakavaxia
       repo: abdelhakavaxia
-      username:
-        from_secret: abdelhakavaxia
-      password:
-        from_secret: docker_password
+      username: abdelhakavaxia
+      password: abdelhakavaxia7*
       dockerfile: ./back-end/Dockerfile 
 
   - name: build-image-frontend
