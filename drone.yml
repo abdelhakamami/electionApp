@@ -8,16 +8,10 @@ platform:
   arch: amd64
 
 steps:
-  - name: build-image-back
-    image: docker:latest
-    commands:
-      - systemctl docker start 
-
-
-      - docker build -t backend-image:dev -f ./back-end/Dockerfile .
+  
 
   - name: push-image-backend
-    image: plugins/docker
+    image: plugins/kaniko
     settings:
       repository: abdelhakavaxia
       tag: dev
@@ -26,6 +20,7 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
+      dockerfile: ./back-end/Dockerfile 
 
   - name: build-image-frontend
     image: docker:latest
