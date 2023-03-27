@@ -1,36 +1,28 @@
 kind: pipeline
-name: build-and-push
-type: kubernetes
-
+name: build-docker-image
 
 platform:
   os: linux
   arch: amd64
 
 steps:
+- name: build
+  image: gcr.io/kaniko-project/executor:v1.7.0
   
-
-  - name: push-image-backend
-    image: plugins/kaniko
-    settings:
-      registry:  docker.io
-      repo: abdelhaxavaxia
-      username: abdelhakavaxia
-      password: abdelhakavaxia7*
-      dockerfile: ./back-end/Dockerfile 
-
-  - name: build-image-frontend
-    image: docker:latest
-    commands:
-      - docker build -t frontend-image-:dev -f ./front-end/Dockerfile .
-
-  - name: push-image-frontend
-    image: plugins/docker
-    settings:
-      repository: abdelhakavaxia
-      tag: dev
-      registry: docker.io
-      username:
-        from_secret: docker_username
-      password:
+    
+  environment:
+    # Set Dockerfile path and image name and tag
+    DOCKERFILE_PATH: /back-end/Dockerfile
+    IMAGE_NAME: docker.io/abdelhakavaxia/electionapp-backend
+    IMAGE_TAG: dev
+    REGISTRY_PASSWORD: 
         from_secret: docker_password
+    $REGISTRY_USERNAME:
+        from_secret: docker_username
+  commands:
+    # Authenticate with your registry
+    - echo $REGISTRY_PASSWORD | docker login -u $REGISTRY_USERNAME --password-stdin your-registry.com
+    # Build the Docker image using Kaniko
+    - /kaniko/executor --context=dir://workspace --dockerfile=$DOCKERFILE_PATH --destination=$IMAGE_NAME:$IMAGE_TAG --no-push
+    # Push the Docker image to the registry
+    - docker push $IMAGE_NAME:$IMAGE_TAG
