@@ -7,10 +7,8 @@ steps:
   image: plugins/docker
   settings:
     registry: docker.io/abdelhakavaxia
-    username: 
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
+    username: abdelhakavaxia
+    password: abdelhakavaxia7*
     dockerfile: ./back-end/Dockerfile
     repo: abdelhakamami/election-app-backend
     context: ./back-end
