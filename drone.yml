@@ -16,9 +16,10 @@ steps:
     DOCKERFILE_PATH: /back-end/Dockerfile
     IMAGE_NAME: docker.io/abdelhakavaxia/electionapp-backend
     IMAGE_TAG: dev
+  settings:
     REGISTRY_PASSWORD: 
         from_secret: docker_password
-    $REGISTRY_USERNAME:
+    REGISTRY_USERNAME:
         from_secret: docker_username
   commands:
     # Authenticate with your registry
@@ -27,3 +28,4 @@ steps:
     - /kaniko/executor --context=dir://workspace --dockerfile=$DOCKERFILE_PATH --destination=$IMAGE_NAME:$IMAGE_TAG --no-push
     # Push the Docker image to the registry
     - docker push $IMAGE_NAME:$IMAGE_TAG
+  
