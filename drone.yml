@@ -9,7 +9,7 @@ platform:
 
 steps:
   - name: build-image-back
-    image: docker:latest
+    image: plugins/docker
     commands:
       - docker build -t backend-image:dev -f ./back-end/Dockerfile .
 
