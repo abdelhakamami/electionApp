@@ -12,7 +12,7 @@ steps:
     image: plugins/docker
     repo: abdelhakavaxia/abdelhakavaxia
     tags: dev
-    dockerfile: /back-end/Dockerfile
+    Dockerfile: /back-end/Dockerfile
     
     username:
       from_secret: docker_username
