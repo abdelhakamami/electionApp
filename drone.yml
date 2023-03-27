@@ -11,7 +11,7 @@ steps:
   - name: build-image-back
     image: docker:latest
     commands:
-      - docker build -t backend-image:dev -f ./back-end/Dockerfile .
+      - docker build -v /var/run/docker.sock:/var/run/docker.sock  -t backend-image:dev -f ./back-end/Dockerfile .
 
   - name: push-image-backend
     image: plugins/docker
