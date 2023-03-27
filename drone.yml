@@ -13,9 +13,9 @@ steps:
   - name: push-image-backend
     image: plugins/kaniko
     settings:
-      repository: abdelhakavaxia
+      
       tag: dev
-      registry: docker.io
+      repo: docker.io/abelhakavaxia
       username:
         from_secret: docker_username
       password:
