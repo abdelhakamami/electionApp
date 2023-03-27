@@ -3,16 +3,28 @@ name: build
 type: kubernetes
 
 steps:
-- name: docker
+- name: build-backend-image
   image: plugins/docker
   settings:
     registry: docker.io
     username: abdelhakavaxia
-        #from_secret: docker_username
+        from_secret: 
     password: abdelhakavaxia7*
-        #from_secret: docker_password
+        from_secret: 
     dockerfile: ./back-end/Dockerfile
-    repo: abdelhakavaxia/election-app-backend
+    repo: abdelhakavaxia/election-app-back-end
     context: ./back-end
     tags: dev
+- name: build-frontend-image
+  image: plugins/docker
+  settings:
+    registry: docker.io
+    username: 
+        from_secret: docker_username
+    password: 
+        from_secret: docker_password
+    dockerfile: ./front-end/Dockerfile
+    repo: abdelhakavaxia/election-app-front-end
+    context: ./front-end
+    tags: dev    
    
