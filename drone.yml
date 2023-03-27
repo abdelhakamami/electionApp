@@ -7,31 +7,10 @@ platform:
   os: linux
   arch: amd64
 
-steps:
-  - name: build-image-back
-    image: plugins/docker
-    repo: abdelhakavaxia/abdelhakavaxia
-    tags: dev
-    Dockerfile: /back-end/Dockerfile
-    
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
 
-  - name: push-image-backend
-    image: plugins/docker
-    settings:
-      repository: abdelhakavaxia
-      tag: dev
-      registry: docker.io
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
 
   - name: build-image-frontend
-    image: docker:latest
+    image: docker:dind
     commands:
       - docker build -t frontend-image-:dev -f ./front-end/Dockerfile .
 
