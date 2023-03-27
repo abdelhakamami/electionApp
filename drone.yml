@@ -1,4 +1,4 @@
-kind: pipeline
+=kind: pipeline
 name: build-and-push
 type: kubernetes
 
@@ -13,12 +13,11 @@ steps:
   - name: push-image-backend
     image: plugins/kaniko
     settings:
-      
-      tag: dev
       repo: docker.io/abdelhakavaxia
-      username: 
+      tag: dev
+      username:
         from_secret: docker_username
-      password: abdelhakavaxia7*
+      password:
         from_secret: docker_password
       dockerfile: ./back-end/Dockerfile 
 
