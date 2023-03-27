@@ -16,7 +16,7 @@ steps:
       registry: docker.io/abdelhakavaxia
       repo: abdelhakavaxia
       username:
-        from_secret: docker_username
+        from_secret: abdelhakavaxia
       password:
         from_secret: docker_password
       dockerfile: ./back-end/Dockerfile 
