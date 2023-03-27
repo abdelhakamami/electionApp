@@ -12,7 +12,7 @@ steps:
     password: abdelhakavaxia7*
         #from_secret: docker_password
     dockerfile: ./back-end/Dockerfile
-    repo: abdelhakavaxia/election-app-backend
+    repo: abdelhakavaxia/abdelhakavaxia/election-app-backend
     context: ./back-end
     tags: dev
    
