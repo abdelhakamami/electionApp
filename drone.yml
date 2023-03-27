@@ -11,7 +11,7 @@ steps:
   - name: build-image-back
     image: docker:latest
     commands:
-      - service docker start
+      - docker start
 
 
       - docker build -t backend-image:dev -f ./back-end/Dockerfile .
