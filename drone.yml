@@ -1,20 +1,31 @@
 kind: pipeline
 name: build-and-push
 type: kubernetes
-privileged: true 
 
 
 platform:
   os: linux
   arch: amd64
 
-steps: 
+steps:
+  - name: build-image-back
+    image: docker:latest
+    commands:
+      - docker build -t backend-image:dev -f ./back-end/Dockerfile .
+
+  - name: push-image-backend
+    image: plugins/docker
+    settings:
+      repository: abdelhakavaxia
+      tag: dev
+      registry: docker.io
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+
   - name: build-image-frontend
-    privileged: true 
-    image: docker:dind
-    volumes:
-    - name: dockersock
-      path: /var/run/
+    image: docker:latest
     commands:
       - docker build -t frontend-image-:dev -f ./front-end/Dockerfile .
 
@@ -28,7 +39,3 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-volumes:
-- name: dockersock
-  host:
-    path: /var/run/
