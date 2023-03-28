@@ -6,14 +6,17 @@ COPY package-lock.json /app/
 
 RUN npm install
 
-COPY ./ /app/
-EXPOSE 3000
+COPY . . 
+
 CMD ["npm", "start"]
-#RUN npm run build
+RUN npm run build
 
 #stage: 2
 FROM nginx:stable-alpine
-WORKDIR /usr/share/nginx/html
+COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
+RUN rm -rf /usr/share/nginx/html/*
+
 RUN rm -rf ./*
-COPY --from=builder /app/build/ .
+COPY --from=builder /app/dist /usr/share/nginx/html
 ENTRYPOINT [ "nginx" , "-g" , "daemon off;" ]
+EXPOSE 3000
