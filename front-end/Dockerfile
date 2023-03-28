@@ -11,7 +11,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 #RUN npm run build
 
-stage: 2
+#stage: 2
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
