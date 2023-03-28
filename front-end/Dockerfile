@@ -11,9 +11,9 @@ EXPOSE 3000
 CMD ["npm", "start"]
 #RUN npm run build
 
-#stage: 2
-#FROM nginx:stable-alpine
-#WORKDIR /usr/share/nginx/html
-#RUN rm -rf ./*
-#COPY --from=builder /app/build/ .
-#ENTRYPOINT [ "nginx" , "-g" , "daemon off;" ]
+stage: 2
+FROM nginx:stable-alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=builder /app/build/ .
+ENTRYPOINT [ "nginx" , "-g" , "daemon off;" ]
