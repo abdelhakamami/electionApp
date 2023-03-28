@@ -16,6 +16,6 @@ FROM nginx:stable-alpine
 COPY ./nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /build /usr/share/nginx/html
 ENTRYPOINT [ "nginx" , "-g" , "daemon off;" ]
 EXPOSE 3000
