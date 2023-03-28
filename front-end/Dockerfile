@@ -13,7 +13,7 @@ RUN npm run build
 
 #stage: 2
 FROM nginx:stable-alpine
-COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 
 RUN rm -rf ./*
