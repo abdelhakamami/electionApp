@@ -1,8 +1,8 @@
 #stage: 1
 FROM node:14.17.6-alpine as builder
 WORKDIR /app
-COPY package.json .
-COPY package-lock.json .
+COPY . /app
+
 
 RUN npm install
 
