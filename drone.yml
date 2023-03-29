@@ -33,6 +33,6 @@ steps:
      FLUXCD_NAMESPACE: flux-sytem
      KUSTOMIZE_BASE: election-app
   commands:
-     - fluxctl list-workloads --k8s-fwd-ns=flux-system --all-namespaces
+     - fluxctl --k8s-fwd-ns=flux-system --k8s-fwd-labels app=source-controller list-workloads --all-namespaces
 
    
