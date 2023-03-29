@@ -33,7 +33,7 @@ steps:
      FLUXCD_NAMESPACE: flux-sytem
      KUSTOMIZE_BASE: election-app
   commands:
-     = |
+     - |
        fluxctl --k8s-fwd-ns=$FLUXCD_NAMESPACE \
         sync \
         --kustomization=$KUSTOMIZE_BASE \
