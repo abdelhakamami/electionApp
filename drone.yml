@@ -18,7 +18,8 @@ steps:
 - name: build-frontend-image
   image: plugins/docker
   settings:
-    registry: docker.io
+    reg
+    istry: docker.io
     username: 
         from_secret: docker_username
     password: 
@@ -26,5 +27,19 @@ steps:
     dockerfile: ./front-end/Dockerfile
     repo: abdelhakavaxia/election-app-front-end
     context: ./front-end
-    tags: dev    
+    tags: dev  
+- name: deploy
+  image: fluxcd/fluxctl:1.24.1
+  enviornment:
+     FLUXCD_NAMESPACE: flux-sytem
+     KUSTOMIZE_BASE: election-app
+  commands:
+     = |
+       fluxctl --k8s-fwd-ns=$FLUXCD_NAMESPACE \
+        sync \
+        --kustomization=$KUSTOMIZE_BASE \
+        --namespace=$FLUXCD_NAMESPACE \
+        --force \
+        --with-source \
+        --revision=main
    
