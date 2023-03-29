@@ -27,8 +27,8 @@ steps:
 - name: update-fluxcd
   image: fluxcd/fluxctl:1.24.1
   environment:
-    - FLUXCD_NAMESPACE: flux-sytem
-    - KUSTOMIZE_BASE: election-app
+  - FLUXCD_NAMESPACE: flux-sytem
+  - KUSTOMIZE_BASE: election-app
   commands:
     - |
       fluxctl --k8s-fwd-ns=$FLUXCD_NAMESPACE \
