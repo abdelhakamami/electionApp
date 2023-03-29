@@ -33,7 +33,5 @@ steps:
      FLUXCD_NAMESPACE: flux-sytem
      KUSTOMIZE_BASE: election-app
   commands:
-     - fluxctl list-workloads --all-namespaces
-
-
+     - fluxctl sync --k8s-fwd-ns test
    
