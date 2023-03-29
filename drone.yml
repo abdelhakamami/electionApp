@@ -33,6 +33,7 @@ steps:
      FLUXCD_NAMESPACE: flux-sytem
      KUSTOMIZE_BASE: election-app
   commands:
-     - fluxctl automate --controller=test:deployment/election-app-frontend
+     - fluxctl list-workloads --all-namespaces
+
 
    
