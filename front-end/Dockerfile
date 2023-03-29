@@ -1,7 +1,7 @@
 #stage: 1
 FROM node:14.17.6 as builder
 WORKDIR /app
-COPY package.json /app/
+COPY ./package.json /app/
 
 RUN npm install
 
