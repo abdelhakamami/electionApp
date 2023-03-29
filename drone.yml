@@ -18,8 +18,7 @@ steps:
 - name: build-frontend-image
   image: plugins/docker
   settings:
-    reg
-    istry: docker.io
+    registry: docker.io
     username: 
         from_secret: docker_username
     password: 
