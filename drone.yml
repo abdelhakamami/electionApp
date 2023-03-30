@@ -26,6 +26,6 @@ steps:
     dockerfile: ./front-end/Dockerfile
     repo: abdelhakavaxia/election-app-front-end
     context: ./front-end
-    tags: dev  
+    tags: dev  ##
 
    
