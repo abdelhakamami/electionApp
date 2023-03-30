@@ -27,12 +27,5 @@ steps:
     repo: abdelhakavaxia/election-app-front-end
     context: ./front-end
     tags: dev  
-- name: deploy
-  image: fluxcd/fluxctl:1.24.1
-  enviornment:
-     FLUXCD_NAMESPACE: flux-sytem
-     KUSTOMIZE_BASE: election-app
-  commands:
-     - fluxctl --k8s-fwd-ns=flux-system --k8s-fwd-labels app=source-controller list-workloads --all-namespaces
 
    
