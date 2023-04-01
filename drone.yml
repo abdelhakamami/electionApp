@@ -14,11 +14,11 @@ steps:
     dockerfile: ./back-end/Dockerfile
     repo: abdelhakavaxia/election-app-back-end
     context: ./back-end
-     commands:
-       - cd electionApp
-       - |
-         TAG=$(git rev-parse --short HEAD)
-         kubectl kustomize . --build-arg TAG=$TAG | kubectl apply -f -
+    commands:
+      - cd electionApp
+      - |
+        TAG=$(git rev-parse --short HEAD)
+        kubectl kustomize . --build-arg TAG=$TAG | kubectl apply -f -
     #tags: dev${DRONE_COMMIT_SHA:0:7}
 - name: build-frontend-image
   image: plugins/docker
