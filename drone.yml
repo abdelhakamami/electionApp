@@ -29,7 +29,15 @@ steps:
     tags: dev${DRONE_COMMIT_SHA:0:7}
 
 
-
+- name: deploy-to-kubernetes
+  image: alpine/git
+  commands:
+  - mkdir -p /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan github.com >> /root/.ssh/known_hosts
+  - git clone git@github.com:my-org/my-repo.git
+  - cd my-repo
+  - git add .
+  - git commit -m "Update container image tag to ${DRONE_COMMIT_SHA}"
+  - git push
 #commands:
 #       - cd electionApp
 #       - |
