@@ -29,16 +29,17 @@ steps:
     tags: dev${DRONE_COMMIT_SHA:0:7}
 
 
+
 - name: deploy
   image: alpine/git
   environment:
-      GIT_AUTH_TOKEN:
-        from_secret: git_auth_token
-    commands:
-      - git config --global user.email "abdelhakamami@gmail.com"
-      - git config --global user.name "Ahmed-Daham"
-      - git clone https://github.com/abdelhakamami/devops.git
-      - cd devops/apps/election-app/
-      - git add .
-      - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
-      - git push origin main
+    GIT_AUTH_TOKEN:
+      from_secret: git_auth_token
+  commands:
+    - git config --global user.email "abdelhakamami@gmail.com"
+    - git config --global user.name "Ahmed-Daham"
+    - git clone https://github.com/abdelhakamami/devops.git
+    - cd devops/apps/election-app/
+    - git add .
+    - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
+    - git push origin main
