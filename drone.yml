@@ -37,7 +37,7 @@ steps:
       from_secret: git_auth_token
   commands:
     - git config --global user.email "abdelhakamami@gmail.com"
-    #- git config --global user.name "abdelhakamami"
+    - git config --global user.name "Abdelhak"
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
     - touch abc
