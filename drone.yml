@@ -31,6 +31,11 @@ steps:
 
 - name: deploy-to-kubernetes
   image: alpine/git
+  settings:
+    namespace: test
+    server: http://20.210.13.147:80/
+    token:
+      from_secret: kubernetes_token
   commands:
   - mkdir -p /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan github.com >> /root/.ssh/known_hosts
   - git clone git@github.com:my-org/my-repo.git
