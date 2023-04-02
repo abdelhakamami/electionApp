@@ -31,20 +31,14 @@ steps:
 
 - name: deploy-to-kubernetes
   image: alpine/git
-  settings:
-    namespace: test
-    server: http://20.210.13.147:80/
-    token:
-      from_secret: kubernetes_token
-  commands:
-  - mkdir -p /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan github.com >> /root/.ssh/known_hosts
-  - git clone git@github.com:my-org/my-repo.git
-  - cd my-repo
-  - git add .
-  - git commit -m "Update container image tag to ${DRONE_COMMIT_SHA}"
-  - git push
-#commands:
-#       - cd electionApp
-#       - |
-#         TAG=$(git rev-parse --short HEAD)
-#         kubectl kustomize . --build-arg TAG=$TAG | kubectl apply -f -
+  environment:
+      GIT_AUTH_TOKEN:
+        from_secret: git_auth_token
+    commands:
+      - git config --global user.email "abdelhakamami@gmail.com"
+      - git config --global user.name "Ahmed-Daham"
+      - git clone https://github.com/abdelhakamami/devops.git
+      - cd devops/apps/election-app/
+      - sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml
+      - git add . && git commit -m "deployment number ${DRONE_COMMIT_SHA:0:7}"
+      - git push origin main
