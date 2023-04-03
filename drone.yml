@@ -38,7 +38,7 @@ steps:
   commands:
     - echo $GIT_AUTH_TOKEN
     - git config --global user.email "abdelhakamami@gmail.com"
-    - git config --global user.name "Abdelhak"
+    - git config --global user.name "abdelhakamami"
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
     - echo "hello world" > myfile.txt
