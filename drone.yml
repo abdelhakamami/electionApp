@@ -41,6 +41,7 @@ steps:
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
     - echo "hello world" > myfile.txt
+    - apk add --no-cache sed
     - sed -i "s/tag:.*/tag: ${DRONE_COMMIT_SHA:0:7}/" kustomization.yaml
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
