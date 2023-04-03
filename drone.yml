@@ -35,7 +35,6 @@ steps:
   environment:
     GIT_AUTH_TOKEN:
       from_secret: git_auth_token
-    DRONE_COMMIT_SHA: "${DRONE_COMMIT_SHA}"
   commands:
     - echo $GIT_AUTH_TOKEN
     - git config --global user.email "abdelhakamami@gmail.com"
