@@ -38,6 +38,7 @@ steps:
   commands:
     - echo $GIT_AUTH_TOKEN
     - git config --global user.email "abdelhakamami@gmail.com"
+    - git config --global user.name "abdelhakamami"
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
     - echo "hello world" > myfile.txt
@@ -46,4 +47,3 @@ steps:
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
     - git push origin main
-#- git config --global user.name "abdelhakamami"
