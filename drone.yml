@@ -41,7 +41,6 @@ steps:
     - git config --global user.name "Abdelhak"
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
-    - touch abc
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
     - git push origin main
