@@ -28,22 +28,40 @@ steps:
     context: ./front-end
     tags: dev${DRONE_COMMIT_SHA:0:7}
 
-
-
 - name: deploy
   image: alpine/git
   environment:
-    GIT_AUTH_TOKEN:
-      from_secret: git_auth_token
+    GIT_USERNAME:
+      from_secret: git_username
+    GIT_PASSWORD:
+      from_secret: git_password
   commands:
-    - echo $GIT_AUTH_TOKEN
+    - echo $GIT_USERNAME
+    - git remote set-url origin https://github.com/abdelhakamami/devops.git
     - git config --global user.email "abdelhakamami@gmail.com"
     - git config --global user.name "abdelhakamami"
     - git clone https://github.com/abdelhakamami/devops.git
-    - cd devops/apps/election-app/
+    - cd REPO/apps/election-app/
     - sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml
     - touch abc
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
     - git push origin main
-###
+
+#- name: deploy
+ # image: alpine/git
+  #environment:
+   # GIT_AUTH_TOKEN:
+    #  from_secret: git_auth_token
+#  commands:
+ #   - echo $GIT_AUTH_TOKEN
+  #  - git config --global user.email "abdelhakamami@gmail.com"
+   # - git config --global user.name "abdelhakamami"
+    #- git clone https://github.com/abdelhakamami/devops.git
+   # - cd devops/apps/election-app/
+    #- sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml
+    #- touch abc
+   # - git add .
+    #- git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
+   # - git push origin main
+
