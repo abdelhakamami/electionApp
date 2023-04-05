@@ -36,7 +36,7 @@ steps:
     GIT_AUTH_TOKEN:
       from_secret: git_auth_token
   commands:
-    - git remote set-url origin https://github.com/abdelhakamami/devops.git
+    - git remote set-url origin https://abdelhakamami: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@github.com/abdelhakamami/devops.git
     - git config --global user.email "abdelhakamami@gmail.com"
     - git config --global user.name "abdelhakamami"
     - git clone https://github.com/abdelhakamami/devops.git
