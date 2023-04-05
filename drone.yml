@@ -36,13 +36,12 @@ steps:
     GIT_AUTH_TOKEN:
       from_secret: git_auth_token
   commands:
-    - git remote set-url origin https://abdelhakamami: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@github.com/abdelhakamami/devops.git
+    - echo $GIT_AUTH_TOKEN
     - git config --global user.email "abdelhakamami@gmail.com"
     - git config --global user.name "abdelhakamami"
     - git clone https://github.com/abdelhakamami/devops.git
     - cd devops/apps/election-app/
     - sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml
-    - touch abc
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
     - git push origin main
