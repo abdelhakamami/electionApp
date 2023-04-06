@@ -68,7 +68,7 @@ steps:
    - rm abc
    - git add .
    - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
-   - git push origin main
+   - git push https://abdelhakamami:$GIT_AUTH_TOKEN@github.com/abdelhakamami/devops.git main
 
 
 
