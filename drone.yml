@@ -28,31 +28,53 @@ steps:
     context: ./front-end
     tags: dev${DRONE_COMMIT_SHA:0:7}
 
+
 - name: deploy
-  image: alpine/git
+  image: alpine/git:2.36.3 
   environment:
-    GIT_USERNAME:
-      from_secret: git_username
-    GIT_PASSWORD:
-      from_secret: git_password
+      SSH_KEY:
+          from_secret: ssh_private
   commands:
-    - git config --global user.email "abdelhakamami@gmail.com"
-    - git config --global user.name "abdelhakamami"
-    - git remote set-url origin https://github.com/abdelhakamami/devops.git
-    - git clone https://github.com/abdelhakamami/devops.git
-    - cd devops/apps/election-app/
+      - mkdir -p ~/.ssh
+      - echo "$SSH_KEY" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - git clone git@github.com:abdelhakamami/devops.git
+      - cd devops/apps/election-app/
+      - touch abc
+      #- sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml 
+      - git add . && git commit -m  "deployment number ${DRONE_COMMIT_SHA:0:7}" 
+      - git push origin main
+      
+
+
+
+
+#- name: deploy
+#  image: alpine/git:2.36.3 
+#  environment:
+#    GIT_USERNAME:
+#      from_secret: git_username
+#    GIT_PASSWORD:
+#      from_secret: git_password
+#  commands:
+#   - git config --global user.email "abdelhakamami@gmail.com"
+#   - git config --global user.name "abdelhakamami"
+#   - git remote set-url origin https://github.com/abdelhakamami/devops.git
+#    - git clone https://github.com/abdelhakamami/devops.git
+#    - cd devops/apps/election-app/
     #- sed -i "s/${DRONE_COMMIT_BEFORE:0:7}/${DRONE_COMMIT_SHA:0:7}/g" kustomization.yaml
-    - touch abc
-    - git add .
-    - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
-    - git push origin main
+#    - touch abc
+#    - git add .
+#    - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
+#    - git push origin main
 
 
 
 #
 
 #- name: deploy
- # image: alpine/git
+ # image: alpine/git:2.36.3
   #environment:
    # GIT_AUTH_TOKEN:
     #  from_secret: git_auth_token
