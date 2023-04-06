@@ -37,7 +37,7 @@ steps:
       from_secret: git_password
   commands:
     - echo $GIT_USERNAME
-    - git remote set-url origin https://github.com/abdelhakamami/devops.git
+    - git remote set-url origin https://github.com:abdelhakamami/devops.git
     - git config --global user.email "abdelhakamami@gmail.com"
     - git config --global user.name "abdelhakamami"
     - git clone https://github.com:abdelhakamami/devops.git
@@ -47,6 +47,10 @@ steps:
     - git add .
     - git commit -m "Updating the new tag ${DRONE_COMMIT_SHA:0:7}"
     - git push origin main
+
+
+
+#https://github.com/abdelhakamami/devops.git
 
 #- name: deploy
  # image: alpine/git
