@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: election-app-frontend
+spec:
+  selector:
+    matchLabels:
+      app: election-app-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: election-app-frontend
+    spec:
+      containers:
+      - name: election-app-frontend
+        image: docker.io/abdelhakavaxia/election-app-front-end:devdd17290
+        imagePullPolicy: Always
+
+        env: 
+          - name: REACT_APP_BACKEND_API
+            valueFrom:
+                 configMapKeyRef: 
+                     name: front-end-configmap
+                     key: REACT_APP_BACKEND_API
+
+
+
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: election-app-frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: election-app-frontend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
